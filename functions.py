@@ -131,7 +131,9 @@ def create_wordcloud(data, max_topics=20):
             "rotationRange": [-90, 90],
             "shape": "circle",
             "width": "100%",
-            "height": "600px",
+            "height": "1500px",
+            "shrinkToFit": True,
+            "layoutAnimation": True
         }]
     }
 
@@ -151,17 +153,6 @@ def load_party_analysis(party, filename="Data/Ausgaben.json"):
 
 def render_party_page(party):
     """Zeigt die Parteianalyse mit den Themen und Bewertungen an."""
-
-    # CSS für volle Breite aktivieren
-    st.markdown("""
-    <style>
-    .main .block-container {
-        max-width: 90% !important;
-    }
-    </style>
-    """, unsafe_allow_html=True)
-
-    st.markdown('<a href="/" target="_self" class="back-button">Zurück zur Hauptseite</a>', unsafe_allow_html=True)
 
     # Lade Daten der Partei
     wahlprogramm_data = load_party_data(party, "Data/wahlprogramm_topics")
