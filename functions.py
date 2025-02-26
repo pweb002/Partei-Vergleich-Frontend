@@ -9,13 +9,13 @@ def get_party_color(party):
     Gibt die RGB-Farbe einer Partei zurück.
     """
     party_colors = {
-        "FDP": "rgb(255,255,0)",  # Gelb
-        "SPD": "rgb(255,0,0)",  # Rot
-        "CDU": "rgb(0,0,0)",  # Schwarz
-        "BÜNDNIS 90/DIE GRÜNEN": "rgb(0,255,0)",  # Grün
-        "BSW": "rgb(128,0,128)",  # dunkles Lila
-        "AfD": "rgb(0,153,255)",  # Blau
-        "DIE LINKE": "rgb(128,0,0)"  # dunkles Rot
+        "FDP": "rgb(243, 212, 59)", 
+        "SPD": "rgb(248, 74, 95)",  
+        "CDU/CSU": "rgb(154, 161, 182)",  
+        "BÜNDNIS 90/DIE GRÜNEN": "rgb(91, 167, 0)",  
+        "BSW": "rgb(168, 100, 255)",  
+        "AfD": "rgb(55, 167, 228)",  
+        "DIE LINKE": "rgb(219, 51, 169)"  
     }
     return party_colors.get(party, "rgb(255,255,255)")  # Standard: weiß, falls Partei nicht gefunden wird
 
@@ -131,7 +131,6 @@ def create_wordcloud(data, max_topics=20):
             "rotationRange": [-90, 90],
             "shape": "circle",
             "width": "100%",
-            "height": "1500px",
             "shrinkToFit": True,
             "layoutAnimation": True
         }]
@@ -172,11 +171,11 @@ def render_party_page(party, max_topics = 20):
     col1, col2 = st.columns([1, 1])
     with col1:
         st.subheader("Wahlprogramm")
-        st_echarts(wahlprogramm_wordcloud, height="600px", key=f"{party}_wahlprogramm")
+        st_echarts(wahlprogramm_wordcloud, height="1000px", key=f"{party}_wahlprogramm")
 
     with col2:
         st.subheader("Plenarsitzung")
-        st_echarts(plenarsitzung_wordcloud, height="600px", key=f"{party}_plenarsitzung")
+        st_echarts(plenarsitzung_wordcloud, height="1000px", key=f"{party}_plenarsitzung")
 
     # Themenübersicht mit Analyse
     st.subheader("Themenübersicht des Wahlprogrammes")

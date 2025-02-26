@@ -10,8 +10,8 @@ st.title("Wahlprogramm und Bundestag - Vergleich")
 
 max_topics = st.slider("Maximale Anzahl von Themen:", min_value=15, max_value=100, value=100, step=1)
 
-st.subheader("Wordcloud")
+st.subheader("Alle Themen der Wahlprogramme")
 combined_data = f.merge_party_json_files("Data/wahlprogramm_topics")
 combined_wordcloud = f.create_wordcloud(combined_data, max_topics)
-st_echarts(combined_wordcloud, height="1500%")
+st_echarts(combined_wordcloud, height="800px")
 

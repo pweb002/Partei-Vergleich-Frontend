@@ -7,6 +7,8 @@ from sentence_transformers import SentenceTransformer
 from transformers import AutoTokenizer
 import os
 
+st.set_page_config(layout="centered")
+
 os.environ["CUDA_VISIBLE_DEVICES"] = "1, 2, 3"
 
 # Streamlit-UI
