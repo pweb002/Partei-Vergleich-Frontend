@@ -1,3 +1,6 @@
 streamlit
 streamlit_echarts
 streamlit_chat
+sentence_transformers
+transformers
+chromadb

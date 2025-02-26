@@ -151,7 +151,7 @@ def load_party_analysis(party, filename="Data/Ausgaben.json"):
         st.error(f"Fehler: Datei {filename} enthält ungültiges JSON.")
         return {}
 
-def render_party_page(party):
+def render_party_page(party, max_topics = 20):
     """Zeigt die Parteianalyse mit den Themen und Bewertungen an."""
 
     # Lade Daten der Partei
@@ -163,25 +163,23 @@ def render_party_page(party):
         st.error(f"Keine Daten für Partei {party} gefunden.")
         return
 
-    st.title(f"Analyse der Partei {wahlprogramm_data['party']}")
+    st.title(f"Themen der Partei {wahlprogramm_data['party']}")
 
     # Wordclouds
-    wahlprogramm_wordcloud = create_wordcloud(wahlprogramm_data)
-    plenarsitzung_wordcloud = create_wordcloud(plenarsitzung_data)
-
-    st.subheader(f"Wordcloud der Partei {wahlprogramm_data['party']}")
+    wahlprogramm_wordcloud = create_wordcloud(wahlprogramm_data, max_topics)
+    plenarsitzung_wordcloud = create_wordcloud(plenarsitzung_data, max_topics)
 
     col1, col2 = st.columns([1, 1])
     with col1:
         st.subheader("Wahlprogramm")
-        st_echarts(wahlprogramm_wordcloud, height="600px")
+        st_echarts(wahlprogramm_wordcloud, height="600px", key=f"{party}_wahlprogramm")
 
     with col2:
         st.subheader("Plenarsitzung")
-        st_echarts(plenarsitzung_wordcloud, height="600px")
+        st_echarts(plenarsitzung_wordcloud, height="600px", key=f"{party}_plenarsitzung")
 
     # Themenübersicht mit Analyse
-    st.subheader("Themenübersicht")
+    st.subheader("Themenübersicht des Wahlprogrammes")
     for topic in wahlprogramm_data["topics"]:
         topic_words = ", ".join(topic["words"])
         topic_analysis = parteianalyse_data.get(topic_words, "Keine Analyse verfügbar.")
@@ -190,3 +188,6 @@ def render_party_page(party):
             st.write(f"**Wichtige Begriffe:** {topic_words}")
             st.write(f"**Erwähnungen:** {topic['count']}")
             st.markdown(f"**Analyse:**\n\n{topic_analysis}", unsafe_allow_html=True)
+
+    
+

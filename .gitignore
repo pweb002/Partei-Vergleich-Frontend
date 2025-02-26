@@ -1,2 +1,7 @@
 /Data/
 /.venv/
+.ipynb_checkpoints/
+__pycache__/
+chromadb/
+venv/
+.idea
